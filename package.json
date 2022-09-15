@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon ./src/main.js",
     "start": "node ./src/main.js",
-    "lint": "eslint --fix ./src/*.js"
+    "lint": "eslint --fix ./src/**/*.js"
   },
   "keywords": [],
   "author": "TorroSoft",
@@ -26,6 +26,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "pg": "^8.8.0",
     "sequelize": "^6.21.6"
   }
 }
