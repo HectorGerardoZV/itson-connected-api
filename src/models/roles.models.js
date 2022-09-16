@@ -11,6 +11,7 @@ const roles = dbObject.define('roles', {
     name: {
         type: sequelize.STRING(30),
         unique: true,
+        allowNull: false,
     },
 });
 
