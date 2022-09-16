@@ -1,6 +1,6 @@
-const vacanciesRouter = require("express").Router();
+const vacanciesRouter = require('express').Router();
 
-vacanciesRouter.get("/vacancies", (req, res) => {
+vacanciesRouter.get('/vacancies', (req, res) => {
     res.json({ msg: 'Vacancies' });
 });
 

@@ -1,7 +1,7 @@
-const sequelize = require("sequelize");
-const { dbObject } = require("../config/dbConnection");
+const sequelize = require('sequelize');
+const { dbObject } = require('../config/dbConnection');
 
-const roles = dbObject.define("roles", {
+const roles = dbObject.define('roles', {
     idRole: {
         type: sequelize.INTEGER,
         primaryKey: true,
@@ -14,9 +14,10 @@ const roles = dbObject.define("roles", {
     },
 });
 
-const user = require("./users.models.js");
+const user = require('./users.models');
+
 roles.hasOne(user, {
-    foreignKey: 'idRole'
-})
+    foreignKey: 'idRole',
+});
 
 module.exports = roles;

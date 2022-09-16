@@ -35,8 +35,9 @@ const companyProfiles = dbObject.define('companyProfiles', {
 });
 
 const profile = require('./profiles.models');
-companyProfiles.hasOne(profile,{
-    foreignKey: 'idCompanyProfileId'
-})
+
+companyProfiles.hasOne(profile, {
+    foreignKey: 'idCompanyProfileId',
+});
 
 module.exports = companyProfiles;

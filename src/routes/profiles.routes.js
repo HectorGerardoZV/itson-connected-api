@@ -1,6 +1,6 @@
-const profilesRouter = require("express").Router();
+const profilesRouter = require('express').Router();
 
-profilesRouter.get("/profiles", (req, res) => {
+profilesRouter.get('/profiles', (req, res) => {
     res.json({ msg: 'Profile' });
 });
 

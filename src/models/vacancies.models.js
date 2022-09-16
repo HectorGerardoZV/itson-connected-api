@@ -1,7 +1,7 @@
-const sequelize = require("sequelize");
-const { dbObject } = require("../config/dbConnection");
+const sequelize = require('sequelize');
+const { dbObject } = require('../config/dbConnection');
 
-const vacancies = dbObject.define('vacancies',{
+const vacancies = dbObject.define('vacancies', {
     idVacancy: {
         type: sequelize.INTEGER,
         primaryKey: true,
@@ -15,25 +15,24 @@ const vacancies = dbObject.define('vacancies',{
     created: {
         type: sequelize.DATE,
         allowNull: false,
-        defaultValue: new Date()
+        defaultValue: new Date(),
     },
     generalData: {
         type: sequelize.TEXT,
-        allowNull: true
+        allowNull: true,
     },
     activities: {
         type: sequelize.TEXT,
-        allowNull: true
+        allowNull: true,
     },
     offer: {
         type: sequelize.TEXT,
-        allowNull: true
+        allowNull: true,
     },
     requirements: {
         type: sequelize.TEXT,
-        allowNull: true
-    }
+        allowNull: true,
+    },
 });
 
 module.exports = vacancies;
-

@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const { json, urlencoded } = require('body-parser');
 const { dbConnection } = require('./config/dbConnection');
-const router = require('./routes/router.routes');
+const router = require('./routes/routes.routes');
 require('./models/models.models');
 
 const main = async () => {

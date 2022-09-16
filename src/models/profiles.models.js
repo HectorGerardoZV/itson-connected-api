@@ -18,10 +18,10 @@ const profiles = dbObject.define('profiles', {
     },
 });
 
+const user = require('./users.models');
 
-const user = require("./users.models.js");
 profiles.hasOne(user, {
-    foreignKey: 'idProfile'
-})
+    foreignKey: 'idProfile',
+});
 
 module.exports = profiles;
