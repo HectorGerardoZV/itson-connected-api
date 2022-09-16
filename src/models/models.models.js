@@ -1,15 +1,15 @@
-const user = require("./user.models");
+const users = require("./users.models");
 const vacancies = require("./vacancies.models");
-const role = require("./role.models.js");
-const profile = require("./profile.models");
-const companyProfile = require("./companyProfile.models");
-const studentProfile = require("./studentProfile.models");
+const roles = require("./roles.models.js");
+const profiles = require("./profiles.models");
+const companyProfiles = require("./companyProfiles.models");
+const studentProfiles = require("./studentProfiles.models");
 
 module.exports = {
-    user,
+    users,
     vacancies,
-    role,
-    profile,
-    companyProfile,
-    studentProfile,
+    roles,
+    profiles,
+    companyProfiles,
+    studentProfiles,
 };

@@ -14,7 +14,7 @@ const roles = dbObject.define("roles", {
     },
 });
 
-const user = require("./user.models.js");
+const user = require("./users.models.js");
 roles.hasOne(user, {
     foreignKey: 'idRole'
 })

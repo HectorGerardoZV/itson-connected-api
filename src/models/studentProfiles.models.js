@@ -34,7 +34,7 @@ const studentProfiles = dbObject.define('studentProfiles', {
     },
 });
 
-const profile = require('./profile.models');
+const profile = require('./profiles.models');
 studentProfiles.hasOne(profile,{
     foreignKey: 'idStudentProfile'
 })

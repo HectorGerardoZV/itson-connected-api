@@ -1,9 +1,12 @@
-const express = require('express');
+const router = require('express').Router();
+const usersRouter = require('./users.routes.js');
+const rolesRouter = require('./roles.routes.js');
+const profilesRouter = require('./profiles.routes.js');
+const vacanciesRouter = require('./vacancies.routes.js');
 
-const router = express.Router();
-
-router.get('/', (__req, res) => {
-    res.json({ message: 'Server running' });
-});
+router.use(usersRouter);
+router.use(rolesRouter);
+router.use(profilesRouter);
+router.use(vacanciesRouter);
 
 module.exports = router;
