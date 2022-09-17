@@ -21,7 +21,7 @@ const StudentProfiles = dbObject.define('studentProfiles', {
         allowNull: true,
     },
     idMajor: {
-        type: sequelize.STRING(40),
+        type: sequelize.INTEGER,
         allowNull: true,
     },
     description: {
