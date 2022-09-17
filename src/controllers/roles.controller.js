@@ -43,7 +43,7 @@ const updateRoleById = async (req, res) => {
 const deleteRoleById = async (req, res) => {
     try {
         const { idRole } = req.params;
-        const roleDeleted = await roles.destroy({ where: { idRole } });
+        const roleDeleted = await Roles.destroy({ where: { idRole } });
         if (roleDeleted === 0) {
             return res
                 .status(404)
