@@ -9,5 +9,5 @@ module.exports = {
     rolesController,
     profilesController,
     vacanciesController,
-    majorsController
+    majorsController,
 };
