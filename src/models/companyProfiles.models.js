@@ -24,7 +24,7 @@ const CompanyProfiles = dbObject.define('companyProfiles', {
         type: sequelize.TEXT,
         allowNull: true,
     },
-    verified : {
+    verified: {
         type: sequelize.BOOLEAN,
         allowNull: true,
     },

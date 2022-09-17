@@ -1,24 +1,24 @@
 const sequelize = require('sequelize');
 const { dbObject } = require('../config/dbConnection');
 
-const Roles = dbObject.define('roles', {
-    idRole: {
+const Majors = dbObject.define('majors', {
+    idMajor: {
         type: sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         unique: true,
     },
     name: {
-        type: sequelize.STRING(30),
+        type: sequelize.STRING(50),
         unique: true,
         allowNull: false,
     },
 });
 
-const User = require('./Users.models');
+const StudentProfiles = require('./StudentProfiles.models');
 
-Roles.hasOne(User, {
-    foreignKey: 'idRole',
+Majors.hasOne(StudentProfiles, {
+    foreignKey: 'idMajor',
 });
 
-module.exports = Roles;
+module.exports = Majors;

@@ -8,7 +8,7 @@ const StudentProfiles = dbObject.define('studentProfiles', {
         autoIncrement: true,
         unique: true,
     },
-    idStuden: {
+    idStudent: {
         type: sequelize.STRING(15),
         allowNull: true,
     },
@@ -20,7 +20,7 @@ const StudentProfiles = dbObject.define('studentProfiles', {
         type: sequelize.STRING(15),
         allowNull: true,
     },
-    major: {
+    idMajor: {
         type: sequelize.STRING(40),
         allowNull: true,
     },

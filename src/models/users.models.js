@@ -36,13 +36,11 @@ const Vacancies = require('./Vacancies.models');
 Users.hasOne(Vacancies, {
     foreignKey: 'idCompany',
 });
-
 Users.belongsToMany(Vacancies, {
     through: 'user_vacancy',
     as: 'vacancies',
     foreignKey: 'idUser',
 });
-
 Vacancies.belongsToMany(Users, {
     through: 'user_vacancy',
     as: 'users',

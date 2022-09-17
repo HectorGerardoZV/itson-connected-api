@@ -18,7 +18,7 @@ const Profiles = dbObject.define('profiles', {
     },
 });
 
-const User = require('./users.models');
+const User = require('./Users.models');
 
 Profiles.hasOne(User, {
     foreignKey: 'idProfile',
