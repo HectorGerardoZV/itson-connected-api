@@ -1,7 +1,7 @@
 const { Users } = require('../../src/models/models.models');
 
-describe('Testing user model', () => {
-    test('The user model must have a good structure.', () => {
+describe('Testing Users model', () => {
+    test('The users model must have a good structure.', () => {
         const user = new Users();
         expect(Object.prototype.hasOwnProperty.call(user, 'dataValues')).toBe(true);
         expect(Object.prototype.hasOwnProperty.call(user, 'uniqno')).toBe(true);
@@ -10,7 +10,7 @@ describe('Testing user model', () => {
         expect(Object.prototype.hasOwnProperty.call(user, 'isNewRecord')).toBe(true);
         expect(Object.keys(user).length).toBe(6);
     });
-    test('The instance of the user model should have the correct attributes and types of the user model.', () => {
+    test('The instance of the users model should have the correct attributes and types of the users model.', () => {
         const userInfo = {
             username: 'HéctorZapata',
             email: 'hector.zapata216792@potros.itson.edu.mx',
