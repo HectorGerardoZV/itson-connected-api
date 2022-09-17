@@ -2,7 +2,7 @@ const sequelize = require('sequelize');
 const { dbObject } = require('../config/dbConnection');
 
 const CompanyProfiles = dbObject.define('companyProfiles', {
-    id: {
+    idCompanyProfile: {
         type: sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -24,7 +24,7 @@ const CompanyProfiles = dbObject.define('companyProfiles', {
         type: sequelize.TEXT,
         allowNull: true,
     },
-    verfied: {
+    verified : {
         type: sequelize.BOOLEAN,
         allowNull: true,
     },

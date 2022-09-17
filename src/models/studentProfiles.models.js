@@ -2,7 +2,7 @@ const sequelize = require('sequelize');
 const { dbObject } = require('../config/dbConnection');
 
 const StudentProfiles = dbObject.define('studentProfiles', {
-    id: {
+    idStudentProfile: {
         type: sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
