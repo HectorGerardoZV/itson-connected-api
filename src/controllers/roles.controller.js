@@ -1,9 +1,9 @@
-const { roles } = require('../models/models.models');
+const { Roles } = require('../models/models.models');
 
 const addNewRole = async (req, res) => {
     try {
         const roleBody = req.body;
-        const newRole = await roles.create(roleBody);
+        const newRole = await Roles.create(roleBody);
         return res.status(200).json(newRole);
     } catch (error) {
         return res.status(500).json({ msg: error.message });
@@ -13,7 +13,7 @@ const addNewRole = async (req, res) => {
 const getRoleById = async (req, res) => {
     try {
         const { idRole } = req.params;
-        const role = await roles.findOne({
+        const role = await Roles.findOne({
             where: {
                 idRole,
             },
@@ -28,7 +28,7 @@ const updateRoleById = async (req, res) => {
     try {
         const roleBody = req.body;
         const { idRole } = req.params;
-        const roleUpdated = await roles.update(roleBody, { where: { idRole } });
+        const roleUpdated = await Roles.update(roleBody, { where: { idRole } });
         if (roleUpdated[0] === 0) {
             return res
                 .status(404)
@@ -57,7 +57,7 @@ const deleteRoleById = async (req, res) => {
 
 const getAllRoles = async (__req, res) => {
     try {
-        const allRoles = await roles.findAll({});
+        const allRoles = await Roles.findAll({});
         return res.status(200).json(allRoles);
     } catch (error) {
         return res.status(500).json({ msg: error.message });
