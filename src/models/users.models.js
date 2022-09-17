@@ -1,7 +1,7 @@
 const sequelize = require('sequelize');
 const { dbObject } = require('../config/dbConnection');
 
-const users = dbObject.define('users', {
+const Users = dbObject.define('users', {
     idUser: {
         type: sequelize.INTEGER,
         primaryKey: true,
@@ -31,22 +31,22 @@ const users = dbObject.define('users', {
     },
 });
 
-const vacancies = require('./vacancies.models');
+const Vacancies = require('./Vacancies.models');
 
-users.hasOne(vacancies, {
+Users.hasOne(Vacancies, {
     foreignKey: 'idCompany',
 });
 
-users.belongsToMany(vacancies, {
+Users.belongsToMany(Vacancies, {
     through: 'user_vacancy',
     as: 'vacancies',
     foreignKey: 'idUser',
 });
 
-vacancies.belongsToMany(users, {
+Vacancies.belongsToMany(Users, {
     through: 'user_vacancy',
     as: 'users',
     foreignKey: 'idVacancy',
 });
 
-module.exports = users;
+module.exports = Users;

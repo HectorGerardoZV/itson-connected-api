@@ -1,7 +1,7 @@
 const sequelize = require('sequelize');
 const { dbObject } = require('../config/dbConnection');
 
-const studentProfiles = dbObject.define('studentProfiles', {
+const StudentProfiles = dbObject.define('studentProfiles', {
     id: {
         type: sequelize.INTEGER,
         primaryKey: true,
@@ -34,10 +34,10 @@ const studentProfiles = dbObject.define('studentProfiles', {
     },
 });
 
-const profile = require('./profiles.models');
+const Profile = require('./Profiles.models');
 
-studentProfiles.hasOne(profile, {
+StudentProfiles.hasOne(Profile, {
     foreignKey: 'idStudentProfile',
 });
 
-module.exports = studentProfiles;
+module.exports = StudentProfiles;

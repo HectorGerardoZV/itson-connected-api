@@ -1,7 +1,7 @@
 const sequelize = require('sequelize');
 const { dbObject } = require('../config/dbConnection');
 
-const companyProfiles = dbObject.define('companyProfiles', {
+const CompanyProfiles = dbObject.define('companyProfiles', {
     id: {
         type: sequelize.INTEGER,
         primaryKey: true,
@@ -34,10 +34,10 @@ const companyProfiles = dbObject.define('companyProfiles', {
     },
 });
 
-const profile = require('./profiles.models');
+const Profile = require('./Profiles.models');
 
-companyProfiles.hasOne(profile, {
+CompanyProfiles.hasOne(Profile, {
     foreignKey: 'idCompanyProfileId',
 });
 
-module.exports = companyProfiles;
+module.exports = CompanyProfiles;
