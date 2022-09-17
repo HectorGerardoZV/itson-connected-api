@@ -1,7 +1,6 @@
-const {Roles} = require('../../src/models/models.models');
+const { Roles } = require('../../src/models/models.models');
 
 describe('Testing Roles model', () => {
-    
     test('The roles model must have a good structure. ', () => {
         const roles = new Roles();
         expect(Object.prototype.hasOwnProperty.call(roles, 'dataValues')).toBe(true);
@@ -15,10 +14,10 @@ describe('Testing Roles model', () => {
     test('The instance of the roles model should have the correct attributes and types of the roles model ', () => {
         const roleInfo = {
             idRole: 1,
-            name: "Student"
+            name: 'Student',
         };
         const roles = new Roles(roleInfo);
-        const {dataValues}= roles;
+        const { dataValues } = roles;
         expect(Object.prototype.hasOwnProperty.call(dataValues, 'idRole')).toBe(true);
         expect(Object.prototype.hasOwnProperty.call(dataValues, 'name')).toBe(true);
         expect(typeof dataValues.idRole).toBe('number');
