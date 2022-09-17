@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon ./src/main.js",
     "start": "node ./src/main.js",
-    "lint": "eslint --fix ./src/**/*.js"
+    "lint": "eslint --fix ./src/**/*.js",
+    "lintTest": "eslint --fix ./test/**/*.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "TorroSoft",
@@ -18,8 +20,9 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.5",
     "eslint-plugin-promise": "^6.0.1",
-    "jest": "^29.0.2",
-    "nodemon": "^2.0.19"
+    "jest": "^29.0.3",
+    "nodemon": "^2.0.19",
+    "supertest": "^6.2.4"
   },
   "dependencies": {
     "body-parser": "^1.20.0",

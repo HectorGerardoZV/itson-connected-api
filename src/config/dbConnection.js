@@ -27,7 +27,7 @@ const dbObject = new Sequelize(schema, user, password, {
 
 const dbConnection = async () => {
     try {
-        const connection = await dbObject.sync({alert: true});
+        const connection = await dbObject.sync({ alert: true });
         if (connection) console.log('Database connected');
     } catch (error) {
         throw new Error(error.message);

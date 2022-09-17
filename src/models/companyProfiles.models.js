@@ -1,8 +1,8 @@
 const sequelize = require('sequelize');
 const { dbObject } = require('../config/dbConnection');
 
-const companyProfiles = dbObject.define('companyProfiles', {
-    id: {
+const CompanyProfiles = dbObject.define('companyProfiles', {
+    idCompanyProfile: {
         type: sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -24,7 +24,7 @@ const companyProfiles = dbObject.define('companyProfiles', {
         type: sequelize.TEXT,
         allowNull: true,
     },
-    verfied: {
+    verified: {
         type: sequelize.BOOLEAN,
         allowNull: true,
     },
@@ -34,9 +34,10 @@ const companyProfiles = dbObject.define('companyProfiles', {
     },
 });
 
-const profile = require('./profiles.models');
-companyProfiles.hasOne(profile,{
-    foreignKey: 'idCompanyProfileId'
-})
+const Profile = require('./Profiles.models');
 
-module.exports = companyProfiles;
+CompanyProfiles.hasOne(Profile, {
+    foreignKey: 'idCompanyProfileId',
+});
+
+module.exports = CompanyProfiles;

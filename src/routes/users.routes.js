@@ -1,6 +1,6 @@
-const usersRouter = require("express").Router();
+const usersRouter = require('express').Router();
 
-usersRouter.get("/users", (req, res) => {
+usersRouter.get('/users', (req, res) => {
     res.json({ msg: 'User' });
 });
 

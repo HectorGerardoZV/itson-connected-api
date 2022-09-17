@@ -1,15 +1,17 @@
-const users = require("./users.models");
-const vacancies = require("./vacancies.models");
-const roles = require("./roles.models.js");
-const profiles = require("./profiles.models");
-const companyProfiles = require("./companyProfiles.models");
-const studentProfiles = require("./studentProfiles.models");
+const Users = require('./Users.models');
+const Vacancies = require('./Vacancies.models');
+const Roles = require('./Roles.models');
+const Profiles = require('./Profiles.models');
+const CompanyProfiles = require('./CompanyProfiles.models');
+const StudentProfiles = require('./StudentProfiles.models');
+const Majors = require('./Majors.models');
 
 module.exports = {
-    users,
-    vacancies,
-    roles,
-    profiles,
-    companyProfiles,
-    studentProfiles,
+    Users,
+    Vacancies,
+    Roles,
+    Profiles,
+    CompanyProfiles,
+    StudentProfiles,
+    Majors,
 };
