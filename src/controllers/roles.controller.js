@@ -31,15 +31,13 @@ const updateRoleById = async (req, res) => {
         const newRole = await Roles.update(
             roleBody,
             {
-                where: { idRole: Number(idRole) },
+                where: { idRole: idRole},
                 returning: true,
                 plain: true,
             },
         );
         if (newRole[0] === 0) {
-            return res
-                .status(404)
-                .json({ msg: "Error: This role doesn't exist" });
+            return res.status(404).json({ msg: "Error: This role doesn't exist" });
         }
         return res.status(200).json(newRole[1]);
     } catch (error) {
