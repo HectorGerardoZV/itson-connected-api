@@ -1,13 +1,7 @@
-const authRouter = require('express').Router();
+const authRouter = require("express").Router();
+const { login, checkToken } = require("../controllers/auth.controller");
 
-
-authRouter.post('/auth',(req,res)=>{
-    res.json({msg: "Login"})
-})
-
-authRouter.get('/auth',(req,res)=>{
-    res.json({msg: "Check"})
-})
-
+authRouter.post("/auth", login);    
+authRouter.get("/auth", checkToken);
 
 module.exports = authRouter;

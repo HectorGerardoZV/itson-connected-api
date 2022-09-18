@@ -14,6 +14,7 @@ describe('Testing Users model', () => {
         const userInfo = {
             username: 'HéctorZapata',
             email: 'hector.zapata216792@potros.itson.edu.mx',
+            password: "82783zap",
             idRole: 1,
             idProfile: 1,
             joined: new Date(),
@@ -22,6 +23,7 @@ describe('Testing Users model', () => {
         const { dataValues } = user;
         expect(Object.prototype.hasOwnProperty.call(dataValues, 'idUser')).toBe(true);
         expect(Object.prototype.hasOwnProperty.call(dataValues, 'username')).toBe(true);
+        expect(Object.prototype.hasOwnProperty.call(dataValues, 'password')).toBe(true);
         expect(Object.prototype.hasOwnProperty.call(dataValues, 'email')).toBe(true);
         expect(Object.prototype.hasOwnProperty.call(dataValues, 'idRole')).toBe(true);
         expect(Object.prototype.hasOwnProperty.call(dataValues, 'idProfile')).toBe(true);
@@ -30,6 +32,7 @@ describe('Testing Users model', () => {
         expect(dataValues.idUser).toBe(null);
         expect(typeof dataValues.username).toBe('string');
         expect(typeof dataValues.email).toBe('string');
+        expect(typeof dataValues.password).toBe('string');
         expect(typeof dataValues.idRole).toBe('number');
         expect(typeof dataValues.idProfile).toBe('number');
         expect(typeof dataValues.joined).toBe('object');
