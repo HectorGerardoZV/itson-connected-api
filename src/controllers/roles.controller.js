@@ -29,12 +29,12 @@ const updateRoleById = async (req, res) => {
         const roleBody = req.body;
         const { idRole } = req.params;
         const newRole = await Roles.update(
-            roleBody, 
-            { 
+            roleBody,
+            {
                 where: { idRole: Number(idRole) },
                 returning: true,
-                plain:true 
-            }
+                plain: true,
+            },
         );
         if (newRole[0] === 0) {
             return res
