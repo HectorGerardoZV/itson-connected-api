@@ -11,11 +11,29 @@ const Users = dbObject.define('users', {
     username: {
         type: sequelize.STRING(30),
         allowNull: false,
+        unique: true,
+        validate: {
+            async isUnique(username) {
+                const usernameExist = await Users.findOne({ where: { username } });
+                if (usernameExist) throw new Error('This username is already being used');
+            },
+        },
     },
     email: {
         type: sequelize.STRING(100),
         unique: true,
         allowNull: false,
+        validate: {
+            isEmail: {
+                args: true,
+                msg: 'This is not a valid email',
+            },
+            async isUnique(email) {
+                const emailExist = await Users.findOne({ where: { email } });
+                if (emailExist) throw new Error('This email is already being used');
+            },
+
+        },
     },
     idRole: {
         type: sequelize.INTEGER,
@@ -28,6 +46,9 @@ const Users = dbObject.define('users', {
     joined: {
         type: sequelize.DATE,
         defaultValue: new Date(),
+        validate: {
+            isDate: true,
+        },
     },
 });
 
