@@ -31,7 +31,7 @@ const updateRoleById = async (req, res) => {
         const newRole = await Roles.update(
             roleBody,
             {
-                where: { idRole: idRole},
+                where: { idRole },
                 returning: true,
                 plain: true,
             },
