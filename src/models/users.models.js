@@ -1,5 +1,7 @@
+const { Sequelize } = require('sequelize');
 const sequelize = require('sequelize');
 const { dbObject } = require('../config/dbConnection');
+const bcrypt = require('bcrypt');
 
 const Users = dbObject.define('users', {
     idUser: {
@@ -35,6 +37,10 @@ const Users = dbObject.define('users', {
 
         },
     },
+    password: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+    },
     idRole: {
         type: sequelize.INTEGER,
         allowNull: false,
@@ -51,6 +57,11 @@ const Users = dbObject.define('users', {
         },
     },
 });
+Users.beforeCreate(async(user)=>{
+    let password = user.password;
+    const newPassword = await bcrypt.hash(password, 10);
+    user.password = newPassword;
+})
 
 const Vacancies = require('./Vacancies.models');
 

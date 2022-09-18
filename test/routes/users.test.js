@@ -8,12 +8,14 @@ describe('Testing users routes and controllers', () => {
         const newUser = {
             username: `newUser-${generate()}`,
             email: `email-${generate()}@email.com`,
+            password: '82783zap',
             idRole: 1
         }
         const response = await request.post('/users').send(newUser);
         idNewUser = response.body.idUser;
         expect(response.body.username).toBe(newUser.username);
         expect(response.body.email).toBe(newUser.email);
+        expect(response.body.password).not.toBe(newUser.password);
         expect(response.body.idRole).toBe(newUser.idRole);
     });
 
