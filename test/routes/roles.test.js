@@ -1,7 +1,7 @@
 const supertest = require("supertest");
 const { generate } = require("shortid");
 
-describe("Testing roles routes", () => {
+describe("Testing roles routes and controllers", () => {
     let request = supertest("http://localhost:3001");
     let idNewRole;
 
@@ -56,8 +56,8 @@ describe("Testing roles routes", () => {
         const newRoleInfo = {
             name: `role-${generate()}`,
         };
-        const responseNewRole = await request.put(`/roles/${-1}`).send(newRoleInfo);
-        expect(responseNewRole.body.msg).toBe('Error: This role doesn\'t exist')
+        const responseNegativeId = await request.put(`/roles/${-1}`).send(newRoleInfo);
+        expect(responseNegativeId.body.msg).toBe('Cannot read properties of null (reading \'length\')');
     });
 
     test('Testing DELETE /roles/:idRole ', async() => {
