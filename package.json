@@ -4,8 +4,8 @@
   "description": "",
   "main": "./src/main.js",
   "scripts": {
-    "dev": "nodemon ./src/main.js",
-    "start": "node ./src/main.js",
+    "dev": "nodemon ./src/server.js",
+    "start": "node ./src/server.js",
     "lint": "eslint --fix ./src/**/*.js",
     "lintTest": "eslint --fix ./test/**/*.js",
     "test": "jest"
