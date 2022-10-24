@@ -1,5 +1,5 @@
 const rolesRouter = require('express').Router();
-const { rolesController } = require('../controllers/controllers.controller');
+const { rolesController } = require('../controllers');
 
 const {
     addNewRole, deleteRoleById, getAllRoles, getRoleById, updateRoleById,
