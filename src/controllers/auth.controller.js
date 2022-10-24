@@ -1,4 +1,4 @@
-const {Users} = require('../models/models.models');
+const {UsersSchema} = require('../schemas');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config({path: '.env'});
@@ -6,20 +6,16 @@ require('dotenv').config({path: '.env'});
 const login = async (req, res) => {
     try {
         const {username,password} = req.body;
-        const user = await Users.findOne({
-            where:{
-                username
-            }
-        })
+        const user = await UsersSchema.findOne({username})
         if(!user) return res.status(404).json({msg: 'Invalid credentials'});
         const isEqualPassword = await bcrypt.compareSync(password, user.password);
         if(!isEqualPassword) return res.status(404).json({msg: 'Invalid credentials'});
 
         const token = jwt.sign(
             {
-                idUser: user.idUser,
+                id: user._id,
                 username: user.username,
-                idRole: user.idRole
+                role: user.role
             },
             process.env.SECRET_KEY,
             {expiresIn: "3d"}
