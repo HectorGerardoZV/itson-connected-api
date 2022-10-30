@@ -4,6 +4,7 @@ const profilesController = require("./profiles.controller");
 const vacanciesController = require("./vacancies.controller");
 const majorsController = require("./majors.controller");
 const errorsController = require("./erros.controllers");
+const usersVacancyController = require("./usersVacancy.controller");
 
 module.exports = {
     usersController,
@@ -12,4 +13,5 @@ module.exports = {
     vacanciesController,
     majorsController,
     errorsController,
+    usersVacancyController,
 };
