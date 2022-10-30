@@ -1,7 +1,9 @@
-const majorsRouter = require('express').Router();
+const majorsRouter = require("express").Router();
+//PipeLines
+const { majorsPipeLines } = require("../pipes");
+const { pipeLineAddNewMajor, pipeLineGetAllMajors } = majorsPipeLines;
 
-majorsRouter.get('/majors', (req, res) => {
-    res.json({ msg: 'Majors' });
-});
+majorsRouter.post("/majors", pipeLineAddNewMajor());
+majorsRouter.get("/majors", pipeLineGetAllMajors());
 
 module.exports = majorsRouter;

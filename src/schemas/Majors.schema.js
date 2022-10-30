@@ -7,6 +7,11 @@ const Majors = new Schema(
             required: true,
             unique: true,
         },
+        acronym: {
+            type: String,
+            required: true,
+            unique: true,
+        },
         semesters: {
             type: Number,
             required: true,
