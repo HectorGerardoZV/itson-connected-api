@@ -1,14 +1,18 @@
-const rolesRouter = require('express').Router();
-const { rolesController } = require('../controllers');
-
+const rolesRouter = require("express").Router();
+//PipeLines
+const { rolesPipelines } = require("../pipes");
 const {
-    addNewRole, deleteRoleById, getAllRoles, getRoleById, updateRoleById,
-} = rolesController;
+    pipeLineAddNewRole,
+    pipeLineGetAllRoles,
+    pipeLineGetRoleById,
+    pipeLineUpdateRole,
+    pipeLineDeleteRole,
+} = rolesPipelines;
 
-rolesRouter.get('/roles', getAllRoles);
-rolesRouter.post('/roles', addNewRole);
-rolesRouter.get('/roles/:idRole', getRoleById);
-rolesRouter.put('/roles/:idRole', updateRoleById);
-rolesRouter.delete('/roles/:idRole', deleteRoleById);
+rolesRouter.get("/roles", pipeLineGetAllRoles());
+rolesRouter.post("/roles", pipeLineAddNewRole());
+rolesRouter.get("/roles/:idRole", pipeLineGetRoleById());
+rolesRouter.put("/roles/:idRole", pipeLineUpdateRole());
+rolesRouter.delete("/roles/:idRole", pipeLineDeleteRole());
 
 module.exports = rolesRouter;

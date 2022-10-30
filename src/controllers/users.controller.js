@@ -1,36 +1,57 @@
 const { UsersSchema } = require("../schemas");
 
-const addNewUser = async (req, res) => {
+const addNewUser = async (req, res, next) => {
     try {
         const user = new UsersSchema(req.body);
         const userCreated = await user.save();
         res.status(200).json(userCreated);
     } catch (error) {
-        res.status(500).json(error.message);
+        const errorLog = {
+            method: req.method,
+            url: req.url,
+            resource: "users",
+            message: error.message,
+        };
+        req.errorLog = errorLog;
+        next();
     }
 };
 
-const getUserById = async (req, res) => {
+const getUserById = async (req, res, next) => {
     try {
         const { idUser } = req.params;
         const user = await UsersSchema.findOne({ _id: idUser });
         if (!user) return res.status(404).json({ msg: "This users doesn't exist" });
         res.status(200).json(user);
     } catch (error) {
-        res.status(500).json(error.message);
+        const errorLog = {
+            method: req.method,
+            url: req.url,
+            resource: "users",
+            message: error.message,
+        };
+        req.errorLog = errorLog;
+        next();
     }
 };
 
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res, next) => {
     try {
         const users = await UsersSchema.find({});
         res.status(200).json(users);
     } catch (error) {
-        res.status(500).json(error.message);
+        const errorLog = {
+            method: req.method,
+            url: req.url,
+            resource: "users",
+            message: error.message,
+        };
+        req.errorLog = errorLog;
+        next();
     }
 };
 
-const updateUserById = async (req, res) => {
+const updateUserById = async (req, res, next) => {
     try {
         const { idUser } = req.params;
         const newUserInfo = req.body;
@@ -40,18 +61,32 @@ const updateUserById = async (req, res) => {
         if (!userUpdated) return res.status(404).json({ msg: "This users doesn't exist" });
         return res.status(200).json(userUpdated);
     } catch (error) {
-        return res.status(500).json(error.message);
+        const errorLog = {
+            method: req.method,
+            url: req.url,
+            resource: "users",
+            message: error.message,
+        };
+        req.errorLog = errorLog;
+        next();
     }
 };
 
-const deleteUserById = async (req, res) => {
+const deleteUserById = async (req, res, next) => {
     try {
         const { idUser } = req.params;
         const userDeleted = await UsersSchema.findOneAndDelete({ _id: idUser });
         if (!userDeleted) return res.status(404).json({ msg: "This users doesn't exist" });
         res.status(200).json({ msg: "User deleted" });
     } catch (error) {
-        return res.status(500).json(error.message);
+        const errorLog = {
+            method: req.method,
+            url: req.url,
+            resource: "users",
+            message: error.message,
+        };
+        req.errorLog = errorLog;
+        next();
     }
 };
 
