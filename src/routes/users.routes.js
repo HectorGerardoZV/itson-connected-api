@@ -1,17 +1,19 @@
 const usersRouter = require("express").Router();
 
-//Controllers
-const { usersController } = require("../controllers");
-const { addNewUser, getUserById, getAllUsers, updateUserById, deleteUserById } = usersController;
+//PipeLines
+const { usersPipeLines } = require("../pipes");
+const {
+    pipeLineAddNewUser,
+    pipeLineGetAllUsers,
+    pipeLineGetUserById,
+    pipeLineUpdateUserById,
+    pipeLineDeleteUserById,
+} = usersPipeLines;
 
-//Validators
-const { userValidator } = require("../validators");
-const { validateAddNewUser, validateGetUserById, validateUpdateUserById,validateDeleteUserById } = userValidator;
-
-usersRouter.post("/users", validateAddNewUser(), addNewUser);
-usersRouter.get("/users", getAllUsers);
-usersRouter.get("/users/:idUser", validateGetUserById(), getUserById);
-usersRouter.put("/users/:idUser", validateUpdateUserById(), updateUserById);
-usersRouter.delete("/users/:idUser",validateDeleteUserById(), deleteUserById);
+usersRouter.post("/users", pipeLineAddNewUser());
+usersRouter.get("/users", pipeLineGetAllUsers());
+usersRouter.get("/users/:idUser", pipeLineGetUserById());
+usersRouter.put("/users/:idUser", pipeLineUpdateUserById());
+usersRouter.delete("/users/:idUser", pipeLineDeleteUserById());
 
 module.exports = usersRouter;
