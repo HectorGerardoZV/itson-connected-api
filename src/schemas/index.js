@@ -8,6 +8,7 @@ const Roles = require("./Roles.schema");
 const Majors = require("./Majors.schema");
 const Vacancies = require("./Vacancies.schema");
 const UsersVacancy = require("./UsersVacancy.schema");
+const Erros = require("./logs/Errors.schema");
 
 const UsersSchema = model("users", Users);
 const ProfilesSchema = model("profiles", Profiles);
@@ -23,6 +24,7 @@ const RolesSchema = model("roles", Roles);
 const MajorsSchema = model("majors", Majors);
 const VacanciesSchema = model("vacancies", Vacancies);
 const UsersVacancySchema = model("usersVacancy", UsersVacancy);
+const ErrorsSchema = model("erros",Erros);
 
 module.exports = {
     UsersSchema,
@@ -33,4 +35,5 @@ module.exports = {
     MajorsSchema,
     VacanciesSchema,
     UsersVacancySchema,
+    ErrorsSchema
 };
