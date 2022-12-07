@@ -54,7 +54,7 @@ const getVacancyById = async (req, res, next) => {
 const getVacanciesByCompany = async (req, res, next) => {
     try {
         const { company } = req.params;
-        const vacancies = await VacanciesSchema.find({ company });
+        const vacancies = await VacanciesSchema.find({ company }).populate("company");
         res.status(200).json(vacancies);
     } catch (error) {
         const errorLog = {
@@ -90,7 +90,7 @@ const getVacanciesByName = async (req, res, next) => {
 const getVacanciesByState = async (req, res, next) => {
     try {
         const { activated } = req.params;
-        const vacancies = await VacanciesSchema.find({ activated });
+        const vacancies = await VacanciesSchema.find({ activated }).populate("company");
         res.status(200).json(vacancies);
     } catch (error) {
         const errorLog = {
