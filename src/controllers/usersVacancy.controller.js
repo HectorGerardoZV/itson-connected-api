@@ -23,12 +23,12 @@ const applicationUser = async (req, res, next) => {
         if (!usersVacancyRelation) {
             addApplication(req, res, next);
         } else {
-            const isValidAggregation = await checkVacancyLimit(vacancy);
+            const isValidAggregation = await checkVacancyLimit(vacancy, res);
             if (isValidAggregation) {
-                req.realtion = usersVacancyRelation;
+                req.relation = usersVacancyRelation;
                 updateApplication(req, res, next);
             } else {
-                return res.status(403).json({ msg: "The limit of applications was reached" });
+                return res.status(403).json({ msg: "El límite de vacantes permitidas fue alcanzado" });
             }
         }
     } catch (error) {
@@ -45,10 +45,10 @@ const applicationUser = async (req, res, next) => {
 
 const addApplication = async (req, res, next) => {
     try {
-        const { vacancy, user } = req.body;
+        const { vacancy, profile } = req.body;
         const relation = {
             vacancy: vacancy,
-            users: [user],
+            profiles: [profile],
         };
         const usersVacancyRelation = new UsersVacancySchema(relation);
         await usersVacancyRelation.save();
@@ -67,11 +67,16 @@ const addApplication = async (req, res, next) => {
 
 const updateApplication = async (req, res, next) => {
     try {
-        const { body, realtion } = req;
-        const { user } = body;
-        realtion.users.push(user);
-        await UsersVacancySchema.findOneAndUpdate({ _id: realtion._id }, realtion, { new: true });
-        next();
+        const { body, relation } = req;
+        const { profile } = body;
+        const isProfileInRelation = relation.profiles.find(profileItem => profileItem.toString() === profile.toString());
+        if (!isProfileInRelation) {
+            relation.profiles.push(profile);
+            await UsersVacancySchema.findOneAndUpdate({ _id: relation._id }, relation, { new: true });
+            next();
+        } else {
+            return res.status(403).json({ msg: "Este perfil ya se encuentra postulado en esta vacante" });
+        }
     } catch (error) {
         const errorLog = {
             method: req.method,
@@ -108,7 +113,6 @@ const updateVacancyLimit = async (req, res, next) => {
     try {
         const { vacancy } = req.body;
         const vacancyToUpdate = await VacanciesSchema.findOne({ _id: vacancy });
-        vacancyToUpdate.limit = Number(vacancyToUpdate.limit) - 1;
         const vacancyUpdated = await VacanciesSchema.findOneAndUpdate(
             { _id: vacancy },
             vacancyToUpdate,
@@ -129,9 +133,10 @@ const updateVacancyLimit = async (req, res, next) => {
 };
 
 const checkVacancyLimit = async (idVacancy, res) => {
-    const vacancy = await VacanciesSchema.findOne({ _id: idVacancy });
-    if (!vacancy) return res.status(404).json({ msg: "This vacancy desn't exist" });
-    return vacancy.limit > 0;
+    const relation = await UsersVacancySchema.findOne({ vacancy: idVacancy }).populate("vacancy");
+    if (!relation) return res.status(404).json({ msg: "This vacancy desn't exist" });
+    const { vacancy, profiles } = relation;
+    return vacancy.limit > profiles.length;
 };
 
 module.exports = {

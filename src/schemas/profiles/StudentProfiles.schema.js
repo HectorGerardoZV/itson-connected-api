@@ -6,12 +6,9 @@ const StudentProfiles = new Schema({
         unique: true
     },
     semester: {
-        type: Number,
-    },
-    description: {
         type: String,
     },
-    cv: {
+    description: {
         type: String,
     },
     major: {

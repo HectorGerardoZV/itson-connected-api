@@ -6,6 +6,7 @@ const majorsController = require("./majors.controller");
 const errorsController = require("./erros.controllers");
 const usersVacancyController = require("./usersVacancy.controller");
 
+
 module.exports = {
     usersController,
     rolesController,

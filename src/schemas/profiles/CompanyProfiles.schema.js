@@ -13,6 +13,7 @@ const CompanyProfiles = new Schema({
     },
     verified: {
         type: Boolean,
+        default:true
     },
 });
 

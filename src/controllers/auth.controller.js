@@ -47,7 +47,6 @@ const checkTokenAccess = async (req, res) => {
     try {
         let token = "";
         const { authorization } = req.headers;
-        console.log(authorization);
         token = authorization.split(" ")[1];
         const user = jwt.verify(token, process.env.SECRET_KEY);
         if (!user) return res.status(404).json({ access: false });

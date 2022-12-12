@@ -13,7 +13,7 @@ const Vacancies = new Schema(
         },
         company: {
             type: Types.ObjectId,
-            ref: "users",
+            ref: "profiles",
             required: true,
         },
         created: {

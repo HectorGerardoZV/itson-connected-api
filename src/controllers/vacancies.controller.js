@@ -1,4 +1,4 @@
-const { VacanciesSchema } = require("../schemas");
+const { VacanciesSchema, UsersVacancySchema } = require("../schemas");
 const addNewVacancy = async (req, res, next) => {
     try {
         const { body } = req;
@@ -19,7 +19,7 @@ const addNewVacancy = async (req, res, next) => {
 
 const getAllVacancies = async (req, res, next) => {
     try {
-        const vacancies = await VacanciesSchema.find({});
+        const vacancies = await VacanciesSchema.find({}).populate("profile");
         res.status(200).json(vacancies);
     } catch (error) {
         const errorLog = {
@@ -36,9 +36,13 @@ const getAllVacancies = async (req, res, next) => {
 const getVacancyById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const vacancy = await VacanciesSchema.findOne({ _id: id });
+        const vacancy = await VacanciesSchema.findOne({ _id: id })
+            .populate("company")
+            .populate("major");
+        const postulations = await UsersVacancySchema.findOne({ vacancy: id })
+            .populate("profiles");
         if (!vacancy) return res.status(404).json({ msg: "This vacancy doesnt't exist" });
-        res.status(200).json(vacancy);
+        res.status(200).json({ vacancy, postulations });
     } catch (error) {
         const errorLog = {
             method: req.method,
