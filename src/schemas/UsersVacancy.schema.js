@@ -2,9 +2,9 @@ const { Schema, Types } = require("mongoose");
 
 const UsersVacancy = new Schema(
     {
-        users: {
+        profiles: {
             type: [Types.ObjectId],
-            ref: "users",
+            ref: "profiles",
         },
         vacancy: {
             type: Types.ObjectId,
